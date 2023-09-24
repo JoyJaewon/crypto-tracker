@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useOutletContext, useOutlet } from "react-router-dom";
 
 const Container = styled.div`
   padding: 0px 5px;
@@ -56,6 +56,7 @@ interface CoinInterface {
 }
 
 export default function Coins() {
+  console.log(useOutletContext);
   const [coins, setCoins] = useState<CoinInterface[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -77,7 +78,7 @@ export default function Coins() {
         <CoinsList>
           {coins.map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`${coin.name}`}>
+              <Link to={`${coin.name}`} state={{ name: coin.name }}>
                 <Img
                   src={`https://static.coinpaprika.com/coin/${coin.id}/logo.png`}
                 />
@@ -87,7 +88,6 @@ export default function Coins() {
           ))}
         </CoinsList>
       )}
-      <Outlet />
     </Container>
   );
 }
