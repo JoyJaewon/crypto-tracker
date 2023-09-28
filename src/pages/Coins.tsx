@@ -17,9 +17,9 @@ const Header = styled.header`
 `;
 const CoinsList = styled.ul``;
 const Coin = styled.li`
-  background-color: #ffdad9;
+  background-color: rgba(0, 0, 0, 0.5);
   margin-bottom: 10px;
-  color: ${(props) => props.theme.bgColor};
+  color: white;
   padding: 5px;
   border-radius: 15px;
   a {

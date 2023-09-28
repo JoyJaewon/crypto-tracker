@@ -8,8 +8,12 @@ import {
 } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
-import { fetchCoinInfo, fetchPriceInfo } from "../api";
+import { fetchCoinInfo } from "../api";
 
+const Previous = styled.div`
+  margin-top: 50px;
+  font-size: 20px;
+`;
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
@@ -76,16 +80,7 @@ interface RouteParams {
   [key: string]: string | undefined;
   coinId: string;
 }
-interface PriceData {
-  time_open: number;
-  time_close: number;
-  open: string;
-  high: string;
-  low: string;
-  close: string;
-  volume: string;
-  market_cap: number;
-}
+
 interface CoinInfo {
   id: string;
   name: string;
@@ -110,21 +105,17 @@ export default function Coin() {
     },
     { enabled: !!coinId }
   );
-  const { isLoading: priceLoading, data: priceData } = useQuery<PriceData>(
-    ["price", coinId],
-    () => {
-      if (coinId) {
-        return fetchPriceInfo(coinId);
-      }
-      throw new Error("Coin ID is undefined.");
-    },
-    { enabled: !!coinId }
-  );
+
   console.log(infoData);
-  console.log(priceData);
-  const loading = infoLoading || priceLoading;
+
+  const loading = infoLoading;
   return (
     <Container>
+      <Previous>
+        <Link to="/coins">
+          <i className="fa-solid fa-arrow-left"></i>
+        </Link>
+      </Previous>
       <Header>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
@@ -146,9 +137,6 @@ export default function Coin() {
           </Overview>
           <Description>{infoData?.description}</Description>
           <Tabs>
-            <Tab>
-              <Link to="price">Price</Link>
-            </Tab>
             <Tab>
               <Link to="chart">Chart</Link>
             </Tab>
