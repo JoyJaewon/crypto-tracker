@@ -1,11 +1,4 @@
-import { useState } from "react";
-import {
-  useParams,
-  useLocation,
-  Link,
-  Outlet,
-  useMatch,
-} from "react-router-dom";
+import { useParams, useLocation, Link, Outlet } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
 import { fetchCoinInfo } from "../api";

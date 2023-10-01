@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
-import { Outlet, Link, useOutletContext, useOutlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchCoins } from "../api";
 
 const Container = styled.div`
@@ -81,7 +80,6 @@ export default function Coins() {
               </Link>
             </Coin>
           ))}
-          <Outlet />
         </CoinsList>
       )}
     </Container>
