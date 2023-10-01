@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams } from "react-router-dom";
 import { fetchPriceInfo } from "../api";
 import { useQuery } from "@tanstack/react-query";
