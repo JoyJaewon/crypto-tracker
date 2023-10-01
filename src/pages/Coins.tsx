@@ -81,6 +81,7 @@ export default function Coins() {
               </Link>
             </Coin>
           ))}
+          <Outlet />
         </CoinsList>
       )}
     </Container>
